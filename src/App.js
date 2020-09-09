@@ -12,16 +12,19 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const APP_ACCESS_KEY = "q2mG3uuehVG6zS8CkSTPDyi4XkYmvs0F2hZY3VeOYPE";
-const APP_SECRET_KEY = "41xKc3ET1WEoFZc2w2PGsaVZnOwA-xXejlEsclvY3yU";
 
 const unsplash = new Unsplash({ accessKey: APP_ACCESS_KEY });
 
 function App() {
   const [images, setImages] = useState([]);
   const [input, setInput] = useState("");
+  const handleEnter = (event) => {
+    if (event.keyCode === 13) {
+      document.getElementById("search_button").click();
+    }
+  };
   const handleChange = (event) => {
     setInput(event.target.value);
-    console.log(event.target.value);
   };
   const handleClick = () => {
     unsplash.search
@@ -47,10 +50,16 @@ function App() {
           <FormControl
             placeholder="What are you looking for"
             aria-describedby="search bar"
+            id="search"
             onChange={handleChange}
+            onKeyDown={handleEnter}
           />
           <InputGroup.Append>
-            <Button variant="outline-secondary" onClick={handleClick}>
+            <Button
+              variant="outline-secondary"
+              id="search_button"
+              onClick={handleClick}
+            >
               Search
             </Button>
           </InputGroup.Append>
@@ -60,10 +69,9 @@ function App() {
         <Col>
           <div className={"gallery"}>
             {images.map((image) => (
-              <div className={"gallery_item"}>
+              <div key={image.id} className={"gallery_item"}>
                 <Image
-                  key={image.id}
-                  src={image.urls.full}
+                  src={image.urls.thumb}
                   alt={image.alt_description}
                   fluid
                 />
