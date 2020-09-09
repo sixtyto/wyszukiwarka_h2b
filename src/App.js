@@ -8,6 +8,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 
+import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const APP_ACCESS_KEY = "q2mG3uuehVG6zS8CkSTPDyi4XkYmvs0F2hZY3VeOYPE";
@@ -17,9 +18,22 @@ const unsplash = new Unsplash({ accessKey: APP_ACCESS_KEY });
 
 function App() {
   const [images, setImages] = useState([]);
+  const [input, setInput] = useState("");
+  const handleChange = (event) => {
+    setInput(event.target.value);
+    console.log(event.target.value);
+  };
+  const handleClick = () => {
+    unsplash.search
+      .photos(input, 1, 10, { orientation: "portrait" })
+      .then(toJson)
+      .then((json) => {
+        setImages([...json.results]);
+      });
+  };
   useEffect(() => {
     unsplash.search
-      .photos("dogs", 1, 10, { orientation: "portrait", color: "green" })
+      .photos("dog", 1, 10, { orientation: "portrait", color: "green" })
       .then(toJson)
       .then((json) => {
         setImages([...json.results]);
@@ -33,23 +47,30 @@ function App() {
           <FormControl
             placeholder="What are you looking for"
             aria-describedby="search bar"
+            onChange={handleChange}
           />
           <InputGroup.Append>
-            <Button variant="outline-secondary">Search</Button>
+            <Button variant="outline-secondary" onClick={handleClick}>
+              Search
+            </Button>
           </InputGroup.Append>
         </InputGroup>
       </Row>
       <Row>
-        {images.map((image) => (
-          <Col md={4}>
-            <Image
-              key={image.id}
-              src={image.urls.full}
-              alt={image.alt_description}
-              thumbnail
-            />
-          </Col>
-        ))}
+        <Col>
+          <div className={"gallery"}>
+            {images.map((image) => (
+              <div className={"gallery_item"}>
+                <Image
+                  key={image.id}
+                  src={image.urls.full}
+                  alt={image.alt_description}
+                  fluid
+                />
+              </div>
+            ))}
+          </div>
+        </Col>
       </Row>
     </Container>
   );
