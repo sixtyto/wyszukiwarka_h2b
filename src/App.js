@@ -4,6 +4,9 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
+import InputGroup from "react-bootstrap/InputGroup";
+import FormControl from "react-bootstrap/FormControl";
+import Button from "react-bootstrap/Button";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -25,6 +28,17 @@ function App() {
   console.log(images);
   return (
     <Container>
+      <Row>
+        <InputGroup className="m-3">
+          <FormControl
+            placeholder="What are you looking for"
+            aria-describedby="search bar"
+          />
+          <InputGroup.Append>
+            <Button variant="outline-secondary">Search</Button>
+          </InputGroup.Append>
+        </InputGroup>
+      </Row>
       <Row>
         {images.map((image) => (
           <Col md={4}>
