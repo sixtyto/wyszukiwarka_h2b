@@ -1,5 +1,5 @@
 .gallery_item {
-  flex: 0 1 150px;
+  flex: 0 1 300px;
   margin: 5px;
   display: grid;
   place-items: center;
@@ -8,4 +8,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+.flex {
+  display: flex;
+  align-items: center;
 }
