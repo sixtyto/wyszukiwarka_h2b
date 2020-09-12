@@ -5,10 +5,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
 import InputGroup from "react-bootstrap/InputGroup";
-import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Jumbotron from "react-bootstrap/Jumbotron";
+import Select from "react-select";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -66,14 +66,23 @@ function App() {
   const [flag, setFlag] = useState(false);
   const [nextPageResults, setNextPageResults] = useState(0);
 
+  const options = [
+    { value: "Chocolate", label: "Chocolate" },
+    { value: "Strawberry", label: "Strawberry" },
+    { value: "Vanilla", label: "Vanilla" },
+    { value: "Cat", label: "Cat" },
+    { value: "Dog", label: "Dog" },
+  ];
+
   const handleEnter = (event) => {
     if (event.keyCode === 13) {
       document.getElementById("search_button").click();
     }
   };
 
-  const handleChange = (event) => {
-    setInput(event.target.value);
+  const handleChange = (e) => {
+    setHero(false);
+    setInput(e.value);
   };
 
   useEffect(() => {
@@ -89,49 +98,55 @@ function App() {
       .then((json) => {
         setNextPageResults([...json.results].length);
       });
-  }, [page, flag]);
+  }, [page, flag, input]);
 
   const handleClick = () => {
-    setHero(false);
     setPage(1);
     setFlag(!flag);
   };
 
-  const handlePage = () => {
-    setPage(page + 1);
+  const handlePage = (value) => {
+    setPage(page + value);
   };
 
   console.log(images);
   console.log(page);
+  console.log(input);
   console.log(nextPageResults);
 
   return (
     <Container>
       {hero ? (
-        <Jumbotron>
-          <h1>Unsplash App!</h1>
-          <p>This is a simple search app using React.</p>
-          <p>Type word below to display images.</p>
-        </Jumbotron>
+        <Row>
+          <Col>
+            <Jumbotron>
+              <h1>Unsplash App!</h1>
+              <p>This is a simple search app using React.</p>
+              <p>Type word below to display images.</p>
+            </Jumbotron>
+          </Col>
+        </Row>
       ) : null}
       <Row>
-        <InputGroup className="m-3">
-          <FormControl
-            placeholder="What are you looking for"
-            aria-describedby="search bar"
-            id="search"
-            onChange={handleChange}
-            onKeyDown={handleEnter}
-          />
-          <InputGroup.Append>
-            <Button
-              variant="outline-secondary"
-              id="search_button"
-              onClick={handleClick}
-            >
-              Search
-            </Button>
-          </InputGroup.Append>
+        <InputGroup>
+          <Col sm={11}>
+            <Select
+              options={options}
+              onChange={handleChange}
+              onKeyDown={handleEnter}
+            />
+          </Col>
+          <Col sm={1}>
+            <InputGroup.Append>
+              <Button
+                variant="outline-secondary"
+                id="search_button"
+                onClick={handleClick}
+              >
+                Search
+              </Button>
+            </InputGroup.Append>
+          </Col>
         </InputGroup>
       </Row>
       {hero ? null : (
@@ -168,12 +183,23 @@ function App() {
           </Row>
 
           <Row>
-            <Col md={{ offset: 8 }}>
+            <Col xs={{ offset: 2 }}>
+              <div className="p-3">
+                <Button
+                  disabled={page === 1}
+                  variant={page === 1 ? "light" : "primary"}
+                  onClick={() => handlePage(-1)}
+                >
+                  Previous page
+                </Button>
+              </div>
+            </Col>
+            <Col xs={{ offset: 4 }}>
               <div className="p-3">
                 <Button
                   disabled={!nextPageResults}
                   variant={!nextPageResults ? "light" : "primary"}
-                  onClick={handlePage}
+                  onClick={() => handlePage(1)}
                 >
                   Next page
                 </Button>
