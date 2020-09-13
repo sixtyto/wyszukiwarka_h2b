@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 
 const VerticallyCenteredModal = (props) => {
+  const { image } = props;
   return (
     <Modal
       {...props}
@@ -11,7 +12,7 @@ const VerticallyCenteredModal = (props) => {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      {props.image ? (
+      {image ? (
         <>
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter" class="flex">
@@ -19,19 +20,19 @@ const VerticallyCenteredModal = (props) => {
                 <Image
                   roundedCircle
                   fluid
-                  src={props.image.user.profile_image.small}
+                  src={image.user.profile_image.small}
                 />
               </div>
               <div>
                 <div>
-                  {props.image.user.first_name} {props.image.user.last_name}
+                  {image.user.first_name} {image.user.last_name}
                 </div>
-                <div>{props.image.user.location}</div>
+                <div>{image.user.location}</div>
               </div>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Image src={props.image.urls.full} fluid />
+            <Image src={image.urls.full} fluid />
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={props.onHide}>Close</Button>

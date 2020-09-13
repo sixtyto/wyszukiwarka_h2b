@@ -23,8 +23,8 @@ const Gallery = (props) => {
       <Row>
         <Col>
           <div className={"gallery"}>
-            {images.map((image) => (
-              <>
+            {images.length ? (
+              images.map((image) => (
                 <Button
                   key={image.id}
                   className={"gallery_item p-0"}
@@ -40,8 +40,10 @@ const Gallery = (props) => {
                     fluid
                   />
                 </Button>
-              </>
-            ))}
+              ))
+            ) : (
+              <p>No results.</p>
+            )}
             <VerticallyCenteredModal
               image={modalImage}
               show={modalShow}
