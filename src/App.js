@@ -24,17 +24,6 @@ const App = () => {
   const [flag, setFlag] = useState(false);
   const [nextPageResults, setNextPageResults] = useState(0);
 
-  const handleEnter = (event) => {
-    if (event.keyCode === 13) {
-      document.getElementById("search_button").click();
-    }
-  };
-
-  const handleChange = (e) => {
-    setHero(false);
-    setInput(e.value);
-  };
-
   useEffect(() => {
     unsplash.search
       .photos(input, page, 30, { orientation: "landscape" })
@@ -49,6 +38,17 @@ const App = () => {
         setNextPageResults([...json.results].length);
       });
   }, [page, flag, input]);
+
+  const handleEnter = (event) => {
+    if (event.keyCode === 13) {
+      document.getElementById("search_button").click();
+    }
+  };
+
+  const handleChange = (e) => {
+    setHero(false);
+    setInput(e.value);
+  };
 
   const handleClick = () => {
     setPage(1);
