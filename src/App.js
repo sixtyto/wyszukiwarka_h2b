@@ -4,16 +4,14 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
-import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
-
-import Select from "react-select";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import VerticallyCenteredModal from "./components/VerticallyCenteredModal";
 import Hero from "./components/Hero";
+import SearchBar from "./components/SearchBar";
 
 const APP_ACCESS_KEY = "q2mG3uuehVG6zS8CkSTPDyi4XkYmvs0F2hZY3VeOYPE";
 
@@ -80,28 +78,12 @@ const App = () => {
   return (
     <Container>
       <Hero hero={hero} />
-      <Row>
-        <InputGroup>
-          <Col sm={11}>
-            <Select
-              options={options}
-              onChange={handleChange}
-              onKeyDown={handleEnter}
-            />
-          </Col>
-          <Col sm={1}>
-            <InputGroup.Append>
-              <Button
-                variant="outline-secondary"
-                id="search_button"
-                onClick={handleClick}
-              >
-                Search
-              </Button>
-            </InputGroup.Append>
-          </Col>
-        </InputGroup>
-      </Row>
+      <SearchBar
+        onClick={handleClick}
+        options={options}
+        handleEnter={handleEnter}
+        handleChange={handleChange}
+      />
       {hero ? null : (
         <>
           <Row>
