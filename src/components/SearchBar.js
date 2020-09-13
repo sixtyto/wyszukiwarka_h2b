@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 const SearchBar = (props) => {
   const { options, handleChange, handleEnter, handleClick } = props;
   return (
-    <Row>
+    <Row className="m-3">
       <InputGroup>
         <Col sm={11}>
           <Select
