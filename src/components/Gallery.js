@@ -54,7 +54,7 @@ const Gallery = (props) => {
       </Row>
 
       <Row>
-        <Col xs={{ offset: 2 }}>
+        <Col className={"d-flex justify-content-around"}>
           <div className="p-3">
             <Button
               disabled={page === 1}
@@ -65,7 +65,7 @@ const Gallery = (props) => {
             </Button>
           </div>
         </Col>
-        <Col xs={{ offset: 4 }}>
+        <Col className={"d-flex justify-content-around"}>
           <div className="p-3">
             <Button
               disabled={!nextPageResults}
