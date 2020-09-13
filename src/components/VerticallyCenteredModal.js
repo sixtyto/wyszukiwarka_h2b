@@ -15,7 +15,10 @@ const VerticallyCenteredModal = (props) => {
       {image ? (
         <>
           <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter" class="flex">
+            <Modal.Title
+              id="contained-modal-title-vcenter"
+              class="d-flex align-items-center"
+            >
               <div class="p-2">
                 <Image
                   roundedCircle

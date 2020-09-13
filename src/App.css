@@ -4,12 +4,3 @@
   display: grid;
   place-items: center;
 }
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.flex {
-  display: flex;
-  align-items: center;
-}

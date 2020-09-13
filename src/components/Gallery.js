@@ -22,7 +22,7 @@ const Gallery = (props) => {
     <>
       <Row>
         <Col>
-          <div className={"gallery"}>
+          <div className={"d-flex flex-wrap justify-content-center"}>
             {images.length ? (
               images.map((image) => (
                 <Button
