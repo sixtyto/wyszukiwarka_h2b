@@ -20,7 +20,7 @@ const App = () => {
   const [modalShow, setModalShow] = useState(false);
   const [modalImage, setModalImage] = useState("");
   const [hero, setHero] = useState(true);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [flag, setFlag] = useState(false);
   const [nextPageResults, setNextPageResults] = useState(0);
 
