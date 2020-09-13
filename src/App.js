@@ -59,11 +59,6 @@ const App = () => {
     setPage(page + value);
   };
 
-  console.log(images);
-  console.log(page);
-  console.log(input);
-  console.log(nextPageResults);
-
   return (
     <Container>
       <Hero hero={hero} />
