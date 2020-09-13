@@ -21,7 +21,6 @@ const App = () => {
   const [modalImage, setModalImage] = useState("");
   const [hero, setHero] = useState(true);
   const [page, setPage] = useState(1);
-  const [flag, setFlag] = useState(false);
   const [nextPageResults, setNextPageResults] = useState(0);
 
   useEffect(() => {
@@ -37,7 +36,7 @@ const App = () => {
       .then((json) => {
         setNextPageResults([...json.results].length);
       });
-  }, [page, flag, input]);
+  }, [page, input]);
 
   const handleEnter = (event) => {
     if (event.keyCode === 13) {
@@ -50,11 +49,6 @@ const App = () => {
     setInput(e.value);
   };
 
-  const handleClick = () => {
-    setPage(1);
-    setFlag(!flag);
-  };
-
   const handlePage = (value) => {
     setPage(page + value);
   };
@@ -63,7 +57,6 @@ const App = () => {
     <Container>
       <Hero hero={hero} />
       <SearchBar
-        onClick={handleClick}
         options={options}
         handleEnter={handleEnter}
         handleChange={handleChange}
