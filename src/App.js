@@ -12,6 +12,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import VerticallyCenteredModal from "./components/VerticallyCenteredModal";
 import Hero from "./components/Hero";
 import SearchBar from "./components/SearchBar";
+import options from "./options";
 
 const APP_ACCESS_KEY = "q2mG3uuehVG6zS8CkSTPDyi4XkYmvs0F2hZY3VeOYPE";
 
@@ -26,14 +27,6 @@ const App = () => {
   const [page, setPage] = useState(0);
   const [flag, setFlag] = useState(false);
   const [nextPageResults, setNextPageResults] = useState(0);
-
-  const options = [
-    { value: "Chocolate", label: "Chocolate" },
-    { value: "Strawberry", label: "Strawberry" },
-    { value: "Vanilla", label: "Vanilla" },
-    { value: "Cat", label: "Cat" },
-    { value: "Dog", label: "Dog" },
-  ];
 
   const handleEnter = (event) => {
     if (event.keyCode === 13) {
